@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime, timedelta
-import requests, random
+from datetime import datetime, timedelta, timezone
+import requests, random, pytz
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your-secret-key'
@@ -75,6 +75,9 @@ def insert_dummy_data():
 API_KEY = "646fe6d36a9399a0d9f2944ebfaab578"
 BASE_URL = "https://api.openweathermap.org/data/2.5/forecast"
 
+# Set your local timezone (change to match your location)
+local_tz = pytz.timezone("Asia/Jakarta")
+
 @app.route('/', methods=['GET', 'POST'])
 def home():
     weather_data = None
@@ -124,10 +127,13 @@ def home():
                         daily_forecast[date]["night_weather"] = entry["weather"][0]["description"]
                         daily_forecast[date]["night_time_diff"] = night_diff  
 
+                # ✅ Get current date based on local timezone
+                utc_now = datetime.now(timezone.utc).replace(tzinfo=pytz.utc)
+                local_now = utc_now.astimezone(local_tz)
+                today = local_now.date()  # Corrected to local date
+                
                 # Convert to a list and keep only the first 3 days (today, tomorrow, day after)
-                today = datetime.today().date()
                 three_days_forecast = []
-
                 for i in range(3):
                     target_date = today + timedelta(days=i)
                     formatted_date = target_date.strftime("%A, %d %B %Y")  # Example: Monday, 04 March 2025
