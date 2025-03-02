@@ -1,0 +1,32 @@
+{% extends "base.html" %} {% block title %}Quiz Home{% endblock %} {% block
+content %}
+<h1>Welcome!</h1>
+
+<!-- City Input -->
+<form method="post">
+  <input type="text" name="city" placeholder="Enter city" required />
+  <button type="submit">Get Weather</button>
+</form>
+
+{% if weather_data %}
+<h2>Weather Forecast for {{ weather_data.city }}</h2>
+
+<table border="1">
+  <tr>
+    <th>Date</th>
+    <th>Day Temperature (°C)</th>
+    <th>Day Weather</th>
+    <th>Night Temperature (°C)</th>
+    <th>Night Weather</th>
+  </tr>
+  {% for day in weather_data.forecast %}
+  <tr>
+    <td>{{ day.date }}</td>
+    <td>{{ day.day_temp if day.day_temp else "N/A" }}</td>
+    <td>{{ day.day_weather if day.day_weather else "N/A" }}</td>
+    <td>{{ day.night_temp if day.night_temp else "N/A" }}</td>
+    <td>{{ day.night_weather if day.night_weather else "N/A" }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endif %} {% endblock %}

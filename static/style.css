@@ -1,0 +1,199 @@
+/* Ensure the page content has enough height */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navigation Bar */
+nav {
+  background-color: #333;
+  padding: 10px;
+  text-align: center;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+  display: inline-block;
+}
+
+nav a:hover {
+  background-color: #575757;
+  border-radius: 5px;
+}
+
+/* Ensure the content grows but does not push the footer over */
+.container {
+  flex: 1;
+  max-width: 800px;
+  margin: 20px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  overflow-x: auto; /* Prevents table cut-off */
+}
+
+/* Forms */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input,
+button {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  background-color: #28a745;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+/* Footer should not overlap content */
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #333;
+  color: white;
+  width: 100%;
+  position: relative;
+  bottom: 0;
+}
+
+/* Leaderboard table styling */
+.leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.leaderboard-table th,
+.leaderboard-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+.leaderboard-table th {
+  background-color: #333;
+  color: white;
+}
+
+/* First place highlight */
+.leaderboard-table tr:first-child td {
+  background-color: gold;
+  font-weight: bold;
+}
+
+/* Second place highlight */
+.leaderboard-table tr:nth-child(2) td {
+  background-color: silver;
+  font-weight: bold;
+}
+
+/* Third place highlight */
+.leaderboard-table tr:nth-child(3) td {
+  background-color: #cd7f32;
+  font-weight: bold;
+}
+
+/* Responsive table */
+@media screen and (max-width: 600px) {
+  .leaderboard-table th,
+  .leaderboard-table td {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
+
+/* Quiz question styling */
+.quiz-question {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* Style radio buttons */
+.quiz-options label {
+  display: block;
+  background: #f8f8f8;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 5px 0;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.quiz-options input[type="radio"] {
+  margin-right: 10px;
+}
+
+/* Highlight selected option */
+.quiz-options label:hover {
+  background: #d1e7fd;
+}
+
+/* Submit button */
+.quiz-submit {
+  background: #28a745;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.quiz-submit:hover {
+  background: #218838;
+}
+
+/* Quiz result box */
+.quiz-result {
+  margin-top: 20px;
+  padding: 10px;
+  background: #ffc107;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.flash-popup {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 15px 20px;
+  border-radius: 5px;
+  z-index: 1000;
+  text-align: center;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.flash.success {
+  background-color: #28a745;
+}
+
+.flash.error {
+  background-color: #dc3545;
+}
+
+.flash.warning {
+  background-color: #ffc107;
+}

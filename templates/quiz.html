@@ -1,0 +1,40 @@
+{% extends "base.html" %} {% block title %}Quiz{% endblock %} {% block content
+%}
+<h1>Quiz</h1>
+<p>
+  Welcome, <strong>{{ user.nickname }}</strong>! Your score:
+  <strong>{{ user.score }}</strong>
+</p>
+
+<form method="post">
+  <div class="quiz-question">
+    <p>{{ question.question }}</p>
+  </div>
+
+  <div class="quiz-options">
+    <label>
+      <input
+        type="radio"
+        name="answer"
+        value="{{ question.answer_1 }}"
+        required
+      />
+      {{ question.answer_1 }}
+    </label>
+    <label>
+      <input type="radio" name="answer" value="{{ question.answer_2 }}" />
+      {{ question.answer_2 }}
+    </label>
+    <label>
+      <input type="radio" name="answer" value="{{ question.answer_3 }}" />
+      {{ question.answer_3 }}
+    </label>
+    <label>
+      <input type="radio" name="answer" value="{{ question.answer_4 }}" />
+      {{ question.answer_4 }}
+    </label>
+  </div>
+
+  <button type="submit" class="quiz-submit">Submit Answer</button>
+</form>
+{% endblock %}
