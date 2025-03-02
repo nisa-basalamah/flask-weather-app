@@ -5,7 +5,7 @@ import requests, random, pytz
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your-secret-key'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////home/nisaiueo01/flask-weather-app/database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -113,25 +113,25 @@ def home():
                     target_daytime = 12  # Noon is ideal
                     day_diff = abs(hour - target_daytime)
 
-                    if day_diff < daily_forecast[date]["day_time_diff"]:  
+                    if day_diff < daily_forecast[date]["day_time_diff"]:
                         daily_forecast[date]["day_temp"] = entry["main"]["temp"]
                         daily_forecast[date]["day_weather"] = entry["weather"][0]["description"]
-                        daily_forecast[date]["day_time_diff"] = day_diff  
+                        daily_forecast[date]["day_time_diff"] = day_diff
 
                     # Find the closest available nighttime temperature (preferably around 00:00)
                     target_nighttime = 0  # Midnight is ideal
                     night_diff = abs(hour - target_nighttime)
 
-                    if night_diff < daily_forecast[date]["night_time_diff"]:  
+                    if night_diff < daily_forecast[date]["night_time_diff"]:
                         daily_forecast[date]["night_temp"] = entry["main"]["temp"]
                         daily_forecast[date]["night_weather"] = entry["weather"][0]["description"]
-                        daily_forecast[date]["night_time_diff"] = night_diff  
+                        daily_forecast[date]["night_time_diff"] = night_diff
 
                 # ✅ Get current date based on local timezone
                 utc_now = datetime.now(timezone.utc).replace(tzinfo=pytz.utc)
                 local_now = utc_now.astimezone(local_tz)
                 today = local_now.date()  # Corrected to local date
-                
+
                 # Convert to a list and keep only the first 3 days (today, tomorrow, day after)
                 three_days_forecast = []
                 for i in range(3):
@@ -166,7 +166,7 @@ def register():
         if User.query.filter_by(nickname=nickname).first():
             flash("Nickname already exists!", "error")
             return redirect(url_for('register'))
-        
+
         # Check if passwords match
         if password != confirm_password:
             flash("Passwords do not match!", "error")
@@ -177,7 +177,7 @@ def register():
         db.session.add(new_user)
         db.session.commit()
         return redirect(url_for('login'))
-    
+
     return render_template('register.html')
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -186,14 +186,14 @@ def login():
         username = request.form['username']
         password = request.form['password']
         user = User.query.filter_by(username=username).first()
-        
+
         if user and user.password == password:
             session['user_id'] = user.id
             return redirect(url_for('home'))
-        
+
         flash("Invalid credentials!", "error")
         return redirect(url_for('login'))
-    
+
     return render_template('login.html')
 
 @app.route('/quiz', methods=['GET', 'POST'])
