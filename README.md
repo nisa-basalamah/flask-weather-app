@@ -16,6 +16,8 @@ python -m venv myenv
 ```
 
 ### 3. Activate the Virtual Environment
+Run the appropriate command based on your terminal:  
+
 - **Windows (Command Prompt):**
   ```bash
   myenv\Scripts\activate
@@ -23,6 +25,10 @@ python -m venv myenv
 - **Windows (PowerShell):**
   ```bash
   myenv\Scripts\Activate.ps1
+  ```
+- **Windows (Git Bash):**
+  ```bash
+  source myenv/Scripts/activate
   ```
 - **Mac/Linux:**
   ```bash
