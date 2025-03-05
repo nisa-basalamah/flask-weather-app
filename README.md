@@ -1,4 +1,4 @@
-# Flask Weather App 🌦️  
+# Flask Quiz App 🌦️  
 
 ## Getting Started  
 
