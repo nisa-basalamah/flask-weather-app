@@ -5,7 +5,8 @@ import requests, random, pytz
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your-secret-key'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////home/nisaiueo01/flask-weather-app/database.db'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////home/nisaiueo01/flask-weather-app/database.db' # for production
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db' # for development in localhost
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
