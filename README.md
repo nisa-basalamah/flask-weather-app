@@ -1,4 +1,4 @@
-# Flask Quiz App 🌦️  
+# Flask Quiz App 🧠✨
 
 ## Getting Started  
 
